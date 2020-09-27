@@ -1,31 +1,4 @@
-// const notes = ['Note 1', 'Note 2', 'Note 3']
-
-// console.log(notes.pop())
-// notes.push('My new note')
-
-// console.log(notes.shift()) // removes first item from the array and returns removed item
-// notes.unshift('My first note') // adds value as the first item in the array
-
-// notes.splice(1, 1, 'This is the new second note') // Remove specified item from the array (start, number of items to remove, add a new item at this point)
-
-// notes[2] = 'Updated third note'
-
-// notes.forEach(function (item, index) {
-//   console.log(index, item)
-// })
-
-// for (let count = 0; count <= 2; count++) {
-//   console.log(count)
-// }
-
-// for (let count = 0; count < notes.length; count++) {
-//   console.log(notes[count])
-// }
-
-// console.log(notes.indexOf('Note 2'))
-
 const notes = [
-  {},
   {
     title: 'My next trip',
     body: 'I want to go to Japan'
@@ -40,17 +13,43 @@ const notes = [
   }
 ]
 
-// console.log({} === {})
+// const findNote = function (notes, noteTitle) {
+//   const index = notes.findIndex(function (note, index) {
+//     return note.title.toLowerCase() === noteTitle.toLowerCase()
+//   })
+//   return notes[index]
+// }
 
-// let someObject = {}
-// let otherObject = someObject
+const findNote = function (notes, noteTitle) {
+  return notes.find(function (note, index) {
+    return note.title.toLowerCase() === noteTitle.toLowerCase()
+  })
+}
 
-// console.log(someObject === otherObject)
+const findNotes = function (notes, searchTerm) {
+  return notes.filter(function (note, index) {
+    const isTitleMatch = note.title.toLowerCase().includes(searchTerm.toLowerCase())
+    const isBodyMatch = note.body.toLowerCase().includes(searchTerm.toLowerCase())
+    
+    return isTitleMatch || isBodyMatch
+  })
+}
 
-const index = notes.findIndex(function (note, index) {
-  return note.title === 'Habits to work on'
-})
-console.log('index', index)
+// console.log(findNotes(notes, 'japan'))
+// const note = findNote(notes, 'office modification')
+// console.log(note)
 
-// console.log(notes.length)
-// console.log(notes)
+const sortNotes = function (notes) {
+  notes.sort(function (a, b) {
+    if (a.title.toLowerCase() < b.title.toLowerCase()) {
+      return -1
+    } else if (b.title.toLowerCase() < a.title.toLowerCase()) {
+      return 1
+    } else {
+      return 0
+    }
+  })
+}
+
+sortNotes(notes)
+console.log(notes)
