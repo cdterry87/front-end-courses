@@ -1,0 +1,93 @@
+.popup {
+    background-color: rgba($color-black, .8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 4000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s;
+
+    @supports(-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px)) {
+        -webkit-backdrop-filter: blur(10px);
+        backdrop-filter: blur(10px);
+        background-color: rgba($color-black, .3);
+    }
+
+    &__close {
+        &:link,
+        &:visited {
+            color: $color-grey-dark;
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            font-size: 3rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all .2s;
+            line-height: 1;
+        }
+
+        &:hover {
+            color: $color-primary;
+            transform: scale(1.2);
+        }
+    }
+
+    // applies to target of an anchor (when it gets appended to the URL)
+    &:target {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:target &__content {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    &__content {
+        @include hvcenter;
+        width: 75%;
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black, .2);
+        border-radius: 3px;
+        display: table;
+        overflow: hidden;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(.25);
+        transition: all .4s .2s;
+    }
+
+    &__left,
+    &__right {
+        display: table-cell;
+    }
+
+    &__left {
+        width: 33%;
+    }
+
+    &__right {
+        width: 67%;
+        vertical-align: middle;
+        padding: 3rem 5rem;
+    }
+
+    &__img {
+        display: block;
+        width: 100%;
+    }
+
+    &__text {
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+        hyphens: auto; // requires a language defined in the HTML
+
+        // Split the paragraph text into two columns with a gape and a line between the columns
+        column-count: 2;
+        column-gap: 5rem; // 1em = 14px
+        column-rule: 1px solid $color-grey-light-2;
+    }
+}
