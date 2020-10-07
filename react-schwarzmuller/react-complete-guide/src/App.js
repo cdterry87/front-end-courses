@@ -1,60 +1,55 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import Person from './Person/Person'
 import './App.css';
 
-class App extends Component {
-  state = {
-    persons: [
-      {
-        name: 'Chase',
-        age: 33
-      },
-      {
-        name: 'Danielle',
-        age: 28
-      },
-      {
-        name: 'Caiden',
-        age: 4
-      }
-    ],
-    otherState: 'some other value'
-  }
+const App = props => {
+  const [ personsState, setPersonsState] = useState(
+    {
+      persons: [
+        { name: 'Chase', age: 33 },
+        { name: 'Danielle', age: 28 },
+        { name: 'Caiden', age: 5 },
+      ]
+    }
+  )
 
-  switchNameHandler = () => {
-    // console.log('on click')
-    // this.state.persons[0].name = 'Chase Terry' // DON'T DO THIS!
-    this.setState(
+  const [otherState, setOtherState] = useState('some other value')
+
+  console.log(personsState, otherState)
+
+  const switchNameHandler = () => {
+    setPersonsState(
       {
         persons: [
-          {
-            name: 'Chase',
-            age: 18
-          },
-          {
-            name: 'Danielle',
-            age: 14
-          },
-          {
-            name: 'Caiden',
-            age: 0
-          }
+          { name: 'Chase', age: 3 },
+          { name: 'Danielle', age: 2 },
+          { name: 'Caiden', age: 1 },
         ]
       }
     )
   }
 
-  render() {
-    return (
-      <div className="App">
-        <h1>Hello World</h1>
-        <button onClick={ this.switchNameHandler }>Switch Name</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}>My hobbies: coding</Person>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>My hobbies: art</Person>
-        <Person name={this.state.persons[2].name} age={this.state.persons[2].age}></Person>
-      </div>
-    )
-  }
+  return (
+    <div className="App">
+      <h1></h1>
+      <p>This is working!</p>
+      <button onClick={switchNameHandler}>Switch Name</button>
+      <Person
+        name={personsState.persons[0].name}
+        age={personsState.persons[0].age}
+      >
+        My hobbies: Coding, Anime, and Screamo
+      </Person>
+      <Person
+        name={personsState.persons[1].name}
+        age={personsState.persons[1].age}
+      />
+      <Person
+        name={personsState.persons[2].name}
+        age={personsState.persons[2].age}
+      />
+    </div>
+  )
 }
 
 export default App;
