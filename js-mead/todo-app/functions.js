@@ -16,6 +16,22 @@ const saveTodos = (todos) => {
   localStorage.setItem('todos', JSON.stringify(todos))
 }
 
+// Toggle todo
+const toggleTodo = (todo) => {
+  todo.completed = !todo.completed
+}
+
+// Remove todo by id
+const removeTodo = (id) => {
+  const todoIndex = todos.findIndex((todo) => {
+    return todo.id === id
+  })
+
+  if (todoIndex > -1) {
+    todos.splice(todoIndex, 1)
+  }
+}
+
 // Get the DOM elements for an individual todo
 const generateTodoDOM = (todo) => {
   const todoElement = document.createElement('div')
@@ -23,8 +39,14 @@ const generateTodoDOM = (todo) => {
   const todoText = document.createElement('span')
   const removeButton = document.createElement('button')
 
-  // Setup checkbhox
+  // Setup checkbox
   checkbox.setAttribute('type', 'checkbox')
+  checkbox.checked = todo.completed
+  checkbox.addEventListener('change', (event) => {
+    toggleTodo(todo)
+    saveTodos(todos)
+    renderTodos(todos, filters)
+  })
   todoElement.appendChild(checkbox)
 
   // Setup todo text
@@ -34,6 +56,11 @@ const generateTodoDOM = (todo) => {
   // Setup remove button
   removeButton.textContent = 'x'
   todoElement.appendChild(removeButton)
+  removeButton.addEventListener('click', () => {
+    removeTodo(todo.id)
+    saveTodos(todos)
+    renderTodos(todos, filters)
+  })
 
   return todoElement
 }
