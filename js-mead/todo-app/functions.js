@@ -5,8 +5,8 @@ const getSavedTodos = () => {
 }
 
 // Hide completed todos
-const hideCompleted = function (todos) {
-  return todos.filter(function (todo) {
+const hideCompleted = (todos) => {
+  return todos.filter((todo) => {
     return !todo.completed
   })
 }
@@ -18,6 +18,7 @@ const saveTodos = (todos) => {
 
 // Toggle todo
 const toggleTodo = (todo) => {
+  console.log(todo)
   todo.completed = !todo.completed
 }
 
@@ -73,21 +74,21 @@ const generateSummaryDOM = (incompleteTodos) => {
 }
 
 // Render todos list
-const renderTodos = function (todos, filters) {
-  const filteredTodos = todos.filter(function (todo) {
+const renderTodos = (todos, filters) => {
+  const filteredTodos = todos.filter((todo) => {
     const searchTextMatch = todo.text.toLowerCase().includes(filters.searchText.toLowerCase())
     const hideCompletedMatch = !filters.hideCompleted || !todo.completed
 
     return searchTextMatch && hideCompletedMatch
   })
 
-  const incompleteTodos = todos.filter(function (todo) {
+  const incompleteTodos = todos.filter((todo) => {
     return !todo.completed
   })
 
   document.querySelector('#todos').innerHTML = ''
   document.querySelector('#todos').appendChild(generateSummaryDOM(incompleteTodos))
-  filteredTodos.forEach(function (todo) {
+  filteredTodos.forEach((todo) => {
     document.querySelector('#todos').appendChild(generateTodoDOM(todo))
   })
 }

@@ -44,14 +44,14 @@ const generateNoteDOM = (note) => {
 }
 
 // Render application notes
-const renderNotes = function (notes, filters) {
-  const filteredNotes = notes.filter(function (note) {
+const renderNotes = (notes, filters) => {
+  const filteredNotes = notes.filter((note) => {
     return note.title.toLowerCase().includes(filters.searchText.toLowerCase())
   })
 
   document.querySelector('#notes').innerHTML = ''
 
-  filteredNotes.forEach(function (note) {
+  filteredNotes.forEach((note) => {
     const noteElement = generateNoteDOM(note)
     document.querySelector('#notes').appendChild(noteElement)
   })
