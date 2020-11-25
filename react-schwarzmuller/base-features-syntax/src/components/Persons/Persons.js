@@ -1,16 +1,22 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import Person from './Person/Person'
 
-class Persons extends Component {
+class Persons extends PureComponent {
   // static getDerivedStateFromProps(props, state) {
   //   console.log('Persons.js getDerivedStateFromProps')
   //   return state
   // }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('Persons.js shouldComponentUpdate')
-    return nextProps.persons !== this.props.persons
-  }
+  // If you have to check ALL props in shouldComponentUpdate, you might want to extend React PureComponent and remove this function
+  // PureComponent already implements shouldComponentUpdate and checks all props for you to see if they changed :)
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log('Persons.js shouldComponentUpdate')
+  //   return (
+  //     nextProps.persons !== this.props.persons || 
+  //     nextProps.changed !== this.props.changed || 
+  //     nextProps.clicked !== this.props.clicked
+  //   )
+  // }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('Persons.js getSnapshopBeforeUpdate')
