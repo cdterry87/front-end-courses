@@ -10,7 +10,7 @@ beforeEach(() => {
 
 describe('Message', () => {
   it('Calls getMessage and displays message', async () => {
-    const mockMessage = 'Hello from the db'
+    const mockMessage = 'Hello world!'
     getMessage.mockResolvedValueOnce({ text: mockMessage })
     const wrapper = mount(Message)
 
