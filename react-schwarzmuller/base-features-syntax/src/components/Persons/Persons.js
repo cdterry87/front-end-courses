@@ -20,7 +20,7 @@ class Persons extends PureComponent {
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     console.log('Persons.js getSnapshopBeforeUpdate')
-    return {message: 'Snapshot!'}
+    return { message: 'Snapshot!' }
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -40,7 +40,7 @@ class Persons extends PureComponent {
         key={person.id}
         name={person.name}
         age={person.age}
-        click={() => this.props.clicked(index)} 
+        click={() => this.props.clicked(index)}
         changed={(event) => this.props.changed(event, person.id)}
       />
     })
