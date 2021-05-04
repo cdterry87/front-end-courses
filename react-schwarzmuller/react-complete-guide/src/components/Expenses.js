@@ -1,19 +1,20 @@
+import Card from './Card'
 import ExpenseItem from './ExpenseItem'
 import './Expenses.css'
 
-function Expenses({ expenses }) {
+const Expenses = ({ expenses }) => {
   return (
-    <div className="expenses">
+    <Card className="expenses">
       {
         expenses.map(expense => (
           <ExpenseItem
-            title={ expense.title }
-            amount={ expense.amount }
-            date={ expense.date }
+            title={expense.title}
+            amount={expense.amount}
+            date={expense.date}
           />
         ))
       }
-    </div>
+    </Card>
   )
 }
 

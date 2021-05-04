@@ -1,9 +1,10 @@
 import './Card.css'
 
-function Card() {
+const Card = ({ children, className }) => {
+  const classes = `card ${className}`
   return (
-    <div className="card">
-
+    <div className={classes}>
+      {children}
     </div>
   )
 }
