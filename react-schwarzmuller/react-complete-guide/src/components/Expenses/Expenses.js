@@ -1,4 +1,4 @@
-import Card from './Card'
+import Card from '../UI/Card'
 import ExpenseItem from './ExpenseItem'
 import './Expenses.css'
 
@@ -8,6 +8,7 @@ const Expenses = ({ expenses }) => {
       {
         expenses.map(expense => (
           <ExpenseItem
+            key={expense.title}
             title={expense.title}
             amount={expense.amount}
             date={expense.date}
